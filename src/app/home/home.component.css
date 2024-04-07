@@ -1,0 +1,57 @@
+@import "primeicons/primeicons.css";
+
+.table-container {
+    width: 80%; 
+    margin: 0 auto; 
+  }
+
+  .all-button {
+    border: none !important;
+  }
+
+  .edit-button {
+    background-color: white !important;
+  }
+
+  .save-button {
+    background-color: rgb(11, 42, 245) !important;
+    color: white !important;
+    border-radius: 999px !important;
+  }
+
+  .cancel-button {
+    background-color: white !important;
+    color: blue;
+  }
+.submit {
+    background-color: rgb(11, 42, 245) !important;
+    color: white !important;
+    border-radius: 999px !important;
+    height: 1cm;
+}
+
+  td{
+    color: darkslateblue;
+    text-align: center;
+    border-bottom: 0.25px solid rgb(232, 238, 240);
+    background-color: white;
+  }
+
+  .table-input {
+    color: darkslateblue;
+    text-align: center;
+  }
+
+  th {
+    color: darkslateblue;
+    text-align: center;
+    font-weight: bold;
+    background-color: aliceblue;
+  }
+
+  .table-foot {
+    font-weight: bold;
+  }
+
+
+  

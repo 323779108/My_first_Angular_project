@@ -1,0 +1,95 @@
+ 
+ <!-- <input pInputText type="text" [(ngModel)]="product.code"> -->
+
+ <html lang="en" dir="rtl">
+     
+ <div class="card table-container">
+   
+    <p-table [value]="products" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr >
+                <th >תחום תקצוב:</th>
+                <th >מסגרת לימודים:</th>
+                <th >מס' לומדים בתחום בפועל:</th>
+                <th >מכסת לומדים מהצעת תקן:</th>
+                <th >מכסת לומדים לאישור ועדה:</th>
+                <th >מכסת לומדים לתקצוב:</th>
+                <th >מקדם ש"ש</th>
+                <th >שעות תקן למוסד:</th>
+                <th >הערה:</th>
+                <th >עריכה</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+            <tr  [pEditableRow]="product" >
+                <td >
+                            {{product.budgetingDomain}}
+                </td>
+                <td>
+                            {{product.groupOfLearners}}
+                </td>
+                <td>
+                    {{product.practiceStudentsFieldNum}}
+                </td>
+                <td>
+                    {{product.learnerQuotaFromStandardProposal}}
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" class="table-input" [(ngModel)]="product.studentQuotaForCommitteeApproval" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.studentQuotaForCommitteeApproval}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    {{product.studentQuotaForBudgeting}}
+                </td>
+                <td>
+                    {{product.promotesWeeklyHours}}
+                </td>
+                <td>
+                    {{product.standardHoursInstitution}}
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" class="table-input" [(ngModel)]="product.note" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.note}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [style]="getColumnStyle()">
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow (click)="onRowEditInit(product)" class="edit-button all-button" > <span class="pi pi-pencil" style="color: rgb(87, 115, 238)"></span></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2 save-button all-button">שמירה</button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger cancel-button all-button">ביטול</button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+              <td class="table-foot">סה"כ</td>
+              <td class="table-foot"></td>
+              <td class="table-foot">{{ calculateColumnSum('practiceStudentsFieldNum') }}</td>
+              <td class="table-foot">{{ calculateColumnSum('learnerQuotaFromStandardProposal') }}</td> 
+              <td class="table-foot">{{ calculateColumnSum('studentQuotaForCommitteeApproval') }}</td> 
+              <td class="table-foot">{{ calculateColumnSum('studentQuotaForBudgeting') }}</td> 
+              <td class="table-foot"></td>
+              <td class="table-foot"></td>
+              <td class="table-foot"></td>
+              <td class="table-foot"></td>
+
+            </tr>
+          </ng-template>
+    </p-table>
+    <br>
+    <button class="submit" > <span class="pi pi-chevron-circle-down" style="color: white"></span>  אישור נתוני שנתון   </button>
+
+</div>
+
